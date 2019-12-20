@@ -2,12 +2,27 @@
 
 ## 图像分类 (Image Classification)
 
+* LeNet
+* AlexNet：突破
+* VGG16/VGG19：网络加深
+* Inception v1/v2/v3/v4：增强卷积模块功能（**v1增加了网络的宽度，增加了网络对尺度的适应性**）
+* ResNet、ResNetXt（**ResNet和Inception思想的集合**）、DenseNet、SENet（**在ResNet的Block之后增加特征间通道之间的关系**）、SE-ResNeXt（**就是把SENet中bottleneck换成ResNeXt的bottleneck**）
+
+### ResNet
+
+* 残差模块：Block结构（中间的通道数比较少，会减少参数量，计算会快）
+
 ## 目标检测 (Object Detection)
 
+* OverFeat
 * R-CNN
 * Fast RCNN
 * Faster R-CNN
 * YOLO
+
+RCNN系列：RCNN可以看作是RegionProposal+CNN这一框架的开山之作，在imgenet/voc/mscoco上基本上所有top的方法都是这个框架，可见其影响之大。RCNN的主要缺点是重复计算，后来MSRA的kaiming组的SPPNET做了相应的加速。
+
+OverFeat系列：说的简单一点就是特征提取算子，就相当于SIFT，HOG等这些算子一样。 Along with this paper, we release a feature extractor named “OverFeat”，这是有一篇文献对overfeat定义的原话。
 
 ## 语义分割 (Semantic Segmentation)
 
