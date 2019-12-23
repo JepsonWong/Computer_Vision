@@ -8,9 +8,25 @@
 * Inception v1/v2/v3/v4：增强卷积模块功能（**v1增加了网络的宽度，增加了网络对尺度的适应性**）
 * ResNet、ResNetXt（**ResNet和Inception思想的集合**）、DenseNet、SENet（**在ResNet的Block之后增加特征间通道之间的关系**）、SE-ResNeXt（**就是把SENet中bottleneck换成ResNeXt的bottleneck**）
 
+### Inception
+
+从空间维度来提升信息，**嵌入多尺度信息**，聚合多种不同感受野上的特征来获得性能增益
+
 ### ResNet
 
 * 残差模块：Block结构（中间的通道数比较少，会减少参数量，计算会快）
+
+### SENet
+
+显式建模特征通道之间的相互依赖关系，通过学习的方式来自动获取到每个通道的重要程度，然后按照这个重要程度去提升有用的特征并抑制对当前任务用处不大的特征。包含两个重要结构：
+
+* Squeeze：顺着空间维度进行特征压缩，将每个二维的特征通道变成一个实数，这个实数某种程度上具有全局的感受野。
+* Excitation：为每个通道生成权重，建模特征通道间的相关性。
+* Reweight：将Excitation输出的权重看作是经过特征选择后每个特征通道的重要性，然后通过乘法逐通道加权到先前的特征上，完成在通道维度上对原始特征的重标定。
+
+对于Inception结构，可以在Inception执行完后加一个SE模块；对于Resnet结构，需要在残差模块Addition前进行加入SE模块，**避免对主干进行scale操作**。
+
+[SENet](http://www.sohu.com/a/161633191_465975)
 
 ## 目标检测 (Object Detection)
 
