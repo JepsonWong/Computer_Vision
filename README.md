@@ -50,6 +50,25 @@ RCNN系列：RCNN可以看作是RegionProposal+CNN这一框架的开山之作，
 
 OverFeat系列：说的简单一点就是特征提取算子，就相当于SIFT，HOG等这些算子一样。 Along with this paper, we release a feature extractor named “OverFeat”，这是有一篇文献对overfeat定义的原话。
 
+## OCR文字识别 (Ocr Recognition)
+
+### CNN+Seq2Seq+Attention
+
+以下网络结构解释针对“ocr regnition代码1”。
+
+* 使用CNN+GRU将图片进行编码；生成hidden的初始状态、图片的编码向量。
+* 使用GRU+Attention进行文字识别。
+  * 使用当前的hidden状态、图片的编码向量计算Attention，形成此时GRU的输入向量。
+  * 将hidden状态、输入向量输入GRU形成新的hidden状态。
+
+[ocr regnition代码1](https://github.com/PaddlePaddle/models/blob/develop/dygraph/ocr_recognition/train.py)
+
+[attention-ocr](https://github.com/emedvedev/attention-ocr)
+
+[一文读懂CRNN+CTC文字识别](https://zhuanlan.zhihu.com/p/43534801)
+
+[基于attention机制实现 CRNN OCR文字识别](https://blog.csdn.net/koibiki/article/details/88648145)
+
 ## 语义分割 (Semantic Segmentation)
 
 per-pixel class labels
