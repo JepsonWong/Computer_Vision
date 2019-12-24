@@ -8,6 +8,10 @@
 * Inception v1/v2/v3/v4：增强卷积模块功能（**v1增加了网络的宽度，增加了网络对尺度的适应性**）
 * ResNet、ResNetXt（**ResNet和Inception思想的集合**）、DenseNet、SENet（**在ResNet的Block之后增加特征间通道之间的关系**）、SE-ResNeXt（**就是把SENet中bottleneck换成ResNeXt的bottleneck**）
 
+[Res-Family: From ResNet to SE-ResNeXt](https://www.cnblogs.com/Matrix_Yao/p/9563063.html)
+
+[Res-Family: From ResNet to SE-ResNeXt](https://blog.csdn.net/qq_38462278/article/details/82252888)
+
 ### Inception
 
 从空间维度来提升信息，**嵌入多尺度信息**，聚合多种不同感受野上的特征来获得性能增益
@@ -16,9 +20,13 @@
 
 * 残差模块：Block结构（中间的通道数比较少，会减少参数量，计算会快）
 
+### ResNeXt
+
+结合Inception和ResNet
+
 ### SENet
 
-显式建模特征通道之间的相互依赖关系，通过学习的方式来自动获取到每个通道的重要程度，然后按照这个重要程度去提升有用的特征并抑制对当前任务用处不大的特征。包含两个重要结构：
+显式建模特征通道之间的相互依赖关系，通过学习的方式来自动获取到每个通道的重要程度，然后按照这个重要程度去提升有用的特征并抑制对当前任务用处不大的特征。**可以把SENet看成是channel-wise的attention**。其包含两个重要结构：
 
 * Squeeze：顺着空间维度进行特征压缩，将每个二维的特征通道变成一个实数，这个实数某种程度上具有全局的感受野。
 * Excitation：为每个通道生成权重，建模特征通道间的相关性。
@@ -27,6 +35,8 @@
 对于Inception结构，可以在Inception执行完后加一个SE模块；对于Resnet结构，需要在残差模块Addition前进行加入SE模块，**避免对主干进行scale操作**。
 
 [SENet](http://www.sohu.com/a/161633191_465975)
+
+[PyTorch implementation of SENet](https://github.com/moskomule/senet.pytorch)
 
 ## 目标检测 (Object Detection)
 
